@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Calculate Deposit</string>
+    <string name="app_logo">App Logo</string>
+    <string name="app_version">App Version: %1$s</string>
+    <string name="menu">Main Menu</string>
+    <string name="start_calc">Почати розрахунок</string>
+    <string name="enter_input">Введіть дані</string>
+    <string name="income">Місячний дохід, ₴</string>
+    <string name="percent">Процент доходу в депозит</string>
+    <string name="next">Далі</string>
+    <string name="choose_currency">Виберіть валюту</string>
+    <string name="dollar">Долар</string>
+    <string name="euro">Євро</string>
+    <string name="results">Результати розрахунків</string>
+    <string name="quit">Вийти</string>
+    <string name="calculate">Розрахувати</string>
+    <string name="fill_fields">Заповніть всі поля</string>
+    <string name="invalid_data">Некоректно введені дані</string>
+    <string name="ok">OK</string>
+    <string name="currency">Валюта</string>
+    <string name="currency_year">Курс валюти на початок-кінець року</string>
+    <string name="income_year">Річний дохід у гривні</string>
+    <string name="spent">Витрачено на обмін валюти</string>
+    <string name="currency_purchased">Придбано валюти</string>
+    <string name="currency_purchased_uah_cost">Гривнева вартість придбаної валюти</string>
+    <string name="uah_remains">Гривневий залишок</string>
+    <string name="uah_cost_n_remains">Гривнева вартість + гривневий залишок</string>
+    <string name="savings">Сума заощадження</string>
+</resources>

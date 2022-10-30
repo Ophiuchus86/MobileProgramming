@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:gravity="center_horizontal" android:id="@+id/constraintLayout">
+
+    <include layout="@layout/logo"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp" android:id="@+id/include" app:layout_constraintTop_toTopOf="parent"
+             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+            android:text="@string/choose_currency"
+            android:textSize="@dimen/primaryTextSize"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/titleTextView"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/include"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.0"/>
+    <Spinner
+            android:id="@+id/currencySpinner"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+            android:layout_marginTop="7dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.088" app:layout_constraintBottom_toBottomOf="parent"/>
+    <Button
+            android:text="@string/calculate"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="wrap_content" android:id="@+id/calcButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/currencySpinner" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.7"/>
+    <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView" android:id="@+id/tableLayout"
+            app:layout_constraintVertical_bias="0.05" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="10dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <TableRow>
+            <TextView android:text="@string/income" android:textSize="@dimen/primaryTextSize"/>
+            <TextView android:id="@+id/incomeTextView"
+                      android:textSize="@dimen/primaryTextSize" android:layout_marginStart="@dimen/primaryTextSpace"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/percent" android:textSize="@dimen/primaryTextSize"/>
+            <TextView android:id="@+id/percentTextView"
+                      android:textSize="@dimen/primaryTextSize" android:layout_marginStart="@dimen/primaryTextSpace"/>
+        </TableRow>
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

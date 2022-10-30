@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   android:gravity="center_horizontal" android:id="@+id/constraintLayout">
+
+    <include layout="@layout/logo"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp" android:id="@+id/include" app:layout_constraintTop_toTopOf="parent"
+             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
+    <TextView
+            android:text="@string/results"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/titleTextView"
+            android:textSize="@dimen/primaryTextSize"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toBottomOf="@+id/include"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintVertical_bias="0.0"/>
+    <Button
+            android:text="@string/ok"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:layout_height="wrap_content" android:id="@+id/okButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.7" app:layout_constraintTop_toBottomOf="@+id/tableLayout"/>
+    <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView" android:id="@+id/tableLayout"
+            app:layout_constraintVertical_bias="0.05" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="10dp" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <TableRow>
+            <TextView android:text="@string/income" android:textSize="@dimen/primaryTextSize"/>
+            <TextView android:id="@+id/incomeTextView"
+                      android:textSize="@dimen/primaryTextSize" android:layout_marginStart="@dimen/primaryTextSpace"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/percent" android:textSize="@dimen/primaryTextSize"/>
+            <TextView android:id="@+id/percentTextView"
+                      android:textSize="@dimen/primaryTextSize" android:layout_marginStart="@dimen/primaryTextSpace"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/currency" android:textSize="@dimen/primaryTextSize"/>
+            <TextView android:id="@+id/currencyTextView"
+                      android:textSize="@dimen/primaryTextSize" android:layout_marginStart="@dimen/primaryTextSpace"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/currency_year" android:textSize="@dimen/primaryTextSize"/>
+            <TextView android:id="@+id/currencyYearTextView"
+                      android:textSize="@dimen/primaryTextSize" android:layout_marginStart="@dimen/primaryTextSpace"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/income_year" android:textSize="@dimen/primaryTextSize"/>
+            <TextView android:id="@+id/incomeYearTextView"
+                      android:textSize="@dimen/primaryTextSize" android:layout_marginStart="@dimen/primaryTextSpace"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/spent" android:textSize="@dimen/primaryTextSize"/>
+            <TextView android:id="@+id/spentTextView"
+                      android:textSize="@dimen/primaryTextSize" android:layout_marginStart="@dimen/primaryTextSpace"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/currency_purchased" android:textSize="@dimen/primaryTextSize"/>
+            <TextView android:id="@+id/currencyPurchasedTextView"
+                      android:textSize="@dimen/primaryTextSize" android:layout_marginStart="@dimen/primaryTextSpace"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/currency_purchased_uah_cost" android:textSize="@dimen/primaryTextSize"/>
+            <TextView android:id="@+id/currencyPurchasedUAHCostTextView"
+                      android:textSize="@dimen/primaryTextSize" android:layout_marginStart="@dimen/primaryTextSpace"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/uah_remains" android:textSize="@dimen/primaryTextSize"/>
+            <TextView android:id="@+id/uahRemainsTextView"
+                      android:textSize="@dimen/primaryTextSize" android:layout_marginStart="@dimen/primaryTextSpace"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/uah_cost_n_remains"/>
+            <TextView android:id="@+id/uahCostNRemainsTextView"
+                      android:textSize="@dimen/primaryTextSize" android:layout_marginStart="@dimen/primaryTextSpace"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:text="@string/savings" android:textSize="@dimen/primaryTextSize"/>
+            <TextView android:id="@+id/savingsTextView"
+                      android:textSize="@dimen/primaryTextSize" android:layout_marginStart="@dimen/primaryTextSpace"/>
+        </TableRow>
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

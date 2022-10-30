@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_height="match_parent">
+
+    <include layout="@layout/logo" />
+
+    <TextView
+            android:text="@string/enter_input"
+            android:textSize="@dimen/primaryTextSize"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/titleTextView"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned"
+            android:ems="10"
+            android:id="@+id/incomeEditText"
+            android:hint="@string/income"
+            android:minHeight="48dp"
+            android:minWidth="@dimen/inputWidth"
+            android:layout_marginTop="@dimen/inputMargin"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/percentEditText"
+            android:hint="@string/percent"
+            android:minHeight="48dp"
+            android:minWidth="@dimen/inputWidth"
+            android:layout_marginTop="@dimen/inputMargin"/>
+    <Button
+            android:text="@string/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/nextButton"
+            android:layout_marginTop="@dimen/inputMargin"/>
+
+</LinearLayout>

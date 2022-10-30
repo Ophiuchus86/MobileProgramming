@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/screenPadding">
+
+    <include layout="@layout/logo" />
+
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="80dp"/>
+
+    <Button
+            android:id="@+id/startCalcButton"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/startCalcButtonHeight"
+            android:text="@string/start_calc"/>
+    <Space
+            android:layout_width="match_parent"
+            android:layout_height="200dp"/>
+    <Button
+            android:id="@+id/quitButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/quit"/>
+    <TextView
+            android:id="@+id/versionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="end|bottom"
+            tools:text="Version 1.0"/>
+</LinearLayout>
