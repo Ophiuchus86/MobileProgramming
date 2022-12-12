@@ -7,10 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Deposit implements Parcelable {
-    public static final float DOLLAR_PRICE_START = 32.34f;
-    public static final float DOLLAR_PRICE_END = 37.21f;
-    public static final float EURO_PRICE_START = 33.11f;
-    public static final float EURO_PRICE_END = 38.42f;
+    public static float DOLLAR_PRICE_START;
+    public static float DOLLAR_PRICE_END;
+    public static float EURO_PRICE_START;
+    public static float EURO_PRICE_END;
     public static final String ARG_DEPOSIT = "DEPOSIT";
     public static final List<String> CURRENCIES = Arrays.asList("Долар", "Євро");
 
