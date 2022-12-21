@@ -10,11 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.github.ophiuchus86.lab123.R;
 import com.github.ophiuchus86.lab123.models.Deposit;
-import com.github.ophiuchus86.lab123.services.CalculationService;
-import com.github.ophiuchus86.lab123.services.CalculationSubscriber;
-import org.w3c.dom.Text;
 
-public class ResultFragment extends BaseFragment implements CalculationSubscriber {
+public class ResultFragment extends BaseFragment {
     private int M;  // місячний дохід
     private float p;  // процент доходу в депозит
     private String currency; // Валюта
@@ -45,6 +42,7 @@ public class ResultFragment extends BaseFragment implements CalculationSubscribe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setTextResults();
         view.findViewById(R.id.okButton).setOnClickListener(v -> {
             getAppContract().toMenuScreen();
         });
@@ -53,10 +51,8 @@ public class ResultFragment extends BaseFragment implements CalculationSubscribe
     @Override
     public void onDestroy() {
         super.onDestroy();
-        CalculationService.unregister(this);
     }
 
-    @Override
     public void onCalculationCompleted(Deposit deposit, float[] values) {
         Log.d("ResultFragment", "onCalculation triggered!");
         M = deposit.getIncome();
@@ -75,22 +71,20 @@ public class ResultFragment extends BaseFragment implements CalculationSubscribe
     }
 
     private void setTextResults(){
-        getActivity().runOnUiThread(() -> {
-            View view = getView();
-            if(view == null)
-                return;
-            ((TextView) view.findViewById(R.id.incomeTextView)).setText(String.valueOf(M));
-            ((TextView) view.findViewById(R.id.percentTextView)).setText(String.format("%.2f", p * 100));
-            ((TextView) view.findViewById(R.id.currencyTextView)).setText(currency);
-            ((TextView) view.findViewById(R.id.currencyYearTextView)).setText(String.format("%.2f-%.2f", Cstart, Cend));
-            ((TextView) view.findViewById(R.id.incomeYearTextView)).setText(String.valueOf(Sy));
-            ((TextView) view.findViewById(R.id.spentTextView)).setText(String.format("%.2f", Sc));
-            ((TextView) view.findViewById(R.id.currencyPurchasedTextView)).setText(String.format("%.2f", W));
-            ((TextView) view.findViewById(R.id.currencyPurchasedUAHCostTextView)).setText(String.format("%.2f", Sh));
-            ((TextView) view.findViewById(R.id.uahRemainsTextView)).setText(String.format("%.2f", Sl));
-            ((TextView) view.findViewById(R.id.uahCostNRemainsTextView)).setText(String.format("%.2f", H));
-            ((TextView) view.findViewById(R.id.savingsTextView)).setText(String.format("%.2f", R_));
-        });
+        View view = getView();
+        if(view == null)
+            return;
+        ((TextView) view.findViewById(R.id.incomeTextView)).setText(String.valueOf(M));
+        ((TextView) view.findViewById(R.id.percentTextView)).setText(String.format("%.2f", p));
+        ((TextView) view.findViewById(R.id.currencyTextView)).setText(currency);
+        ((TextView) view.findViewById(R.id.currencyYearTextView)).setText(String.format("%.2f-%.2f", Cstart, Cend));
+        ((TextView) view.findViewById(R.id.incomeYearTextView)).setText(String.valueOf(Sy));
+        ((TextView) view.findViewById(R.id.spentTextView)).setText(String.format("%.2f", Sc));
+        ((TextView) view.findViewById(R.id.currencyPurchasedTextView)).setText(String.format("%.2f", W));
+        ((TextView) view.findViewById(R.id.currencyPurchasedUAHCostTextView)).setText(String.format("%.2f", Sh));
+        ((TextView) view.findViewById(R.id.uahRemainsTextView)).setText(String.format("%.2f", Sl));
+        ((TextView) view.findViewById(R.id.uahCostNRemainsTextView)).setText(String.format("%.2f", H));
+        ((TextView) view.findViewById(R.id.savingsTextView)).setText(String.format("%.2f", R_));
     }
 
 }
