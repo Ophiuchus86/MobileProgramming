@@ -1,6 +1,5 @@
 package com.github.ophiuchus86.lab123;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import androidx.annotation.Nullable;
@@ -13,17 +12,20 @@ import com.github.ophiuchus86.lab123.fragments.InputFragment;
 import com.github.ophiuchus86.lab123.fragments.MenuFragment;
 import com.github.ophiuchus86.lab123.fragments.ResultFragment;
 import com.github.ophiuchus86.lab123.models.Deposit;
-import com.github.ophiuchus86.lab123.services.CalculationService;
 
 import java.util.UUID;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity implements AppContract {
+    private ExecutorService executorService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         loadCurrencyPrices();
+        executorService = Executors.newSingleThreadExecutor();
         if (savedInstanceState == null)
             toMenuScreen();
     }
@@ -51,14 +53,11 @@ public class MainActivity extends AppCompatActivity implements AppContract {
 
     @Override
     public void toResultScreen(Fragment target, Deposit deposit) {
-        ResultFragment resultFragment = ResultFragment.newInstance();
-        CalculationService.register(resultFragment);
+        ResultFragment resultFragment = new ResultFragment();
         launchFragment(target, resultFragment);
-
-        Intent intent = new Intent(this, CalculationService.class);
-        intent.setAction(CalculationService.ACTION_CALCULATE);
-        intent.putExtra(Deposit.ARG_DEPOSIT, deposit);
-        startService(intent);
+        executorService.submit(() -> {
+            calculate(deposit, resultFragment);
+        });
     }
 
     @Override
@@ -82,6 +81,30 @@ public class MainActivity extends AppCompatActivity implements AppContract {
         Deposit.DOLLAR_PRICE_END = prefs.getFloat("DOLLAR_PRICE_END", 0f);
         Deposit.EURO_PRICE_START = prefs.getFloat("EURO_PRICE_START", 0f);
         Deposit.EURO_PRICE_END = prefs.getFloat("EURO_PRICE_END", 0f);
+    }
+
+    private void calculate(Deposit deposit, ResultFragment resultFragment){
+        Log.d("MainActivity", "Entered calculate method");
+
+        int M = deposit.getIncome();  // місячний дохід
+        float p = deposit.getPercent() / 100;  // процент доходу в депозит
+        String currency = deposit.getCurrency();
+        float Cstart = Deposit.getCurrencyPriceStart(currency);
+        float Cend = Deposit.getCurrencyPriceEnd(currency);
+
+        float Sy = M * 12;  // Річний дохід
+        float Sc = Sy * p;  // Витрачено на обмін валюти за рік
+        float W = 0;  // Кількість валюти придбаної за рік
+        for(int i = 1; i <= 12; i++){
+            float Ci = Cstart + i * (Cend - Cstart) / 12;
+            W += p * M / Ci;
+        }
+        float Sh = W * Cend;  // Гривнева вартість придбаної валюти на кінець року
+        float Sl = Sy - Sc;  // Гривневий залишок
+        float H = Sh + Sl;  // Сума гривневого залишку та гривневої вартості валюти на кінець року
+        float R_ = H - Sy;  // Сума заощадження
+
+        resultFragment.onCalculationCompleted(deposit, new float[]{Sy, Sc, W, Sh, Sl, H, R_});
     }
 
 }
